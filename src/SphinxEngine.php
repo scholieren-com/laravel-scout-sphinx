@@ -162,7 +162,7 @@ class SphinxEngine extends AbstractEngine
             }
         }
         
-        return $totalCount;
+        return (int) $totalCount;
     }
 
     /**

@@ -103,7 +103,9 @@ class SphinxEngine extends AbstractEngine
      */
     public function paginate(Builder $builder, $perPage, $page)
     {
-        return $this->performSearch($builder)->limit($perPage * ($page - 1), $perPage)
+        return $this->performSearch($builder)
+            ->limit($perPage * ($page - 1), $perPage)
+            ->option('max_matches', $perPage * $page)
             ->execute();
     }
 

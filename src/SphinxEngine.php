@@ -91,20 +91,21 @@ class SphinxEngine extends AbstractEngine{
 		return $this->performSearch($builder)->execute();
 	}
 
-	/**
-	 * Perform the given search on the engine.
-	 *
-	 * @param Builder $builder
-	 * @param int $perPage
-	 * @param int $page
-	 * @return mixed
-	 * @throws
-	 */
-	public function paginate(Builder $builder, $perPage, $page)
-	{
-		return $this->performSearch($builder)->limit($perPage * ($page - 1), $perPage)
-			->execute();
-	}
+    /**
+     * Perform the given search on the engine.
+     *
+     * @param Builder $builder
+     * @param int $perPage
+     * @param int $page
+     * @return mixed
+     */
+    public function paginate(Builder $builder, $perPage, $page)
+    {
+        return $this->performSearch($builder)
+            ->limit($perPage * ($page - 1), $perPage)
+            ->option('max_matches', $perPage * $page)
+            ->execute();
+    }
 
 	/**
 	 * Map the given results to instances of the given model.

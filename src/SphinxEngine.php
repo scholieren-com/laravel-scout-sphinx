@@ -162,8 +162,8 @@ class SphinxEngine extends AbstractEngine{
 			}
 		}
 
-		return $totalCount;
-	}
+        return (int) $totalCount;
+    }
 
 	/**
 	 * Flush all of the model's records from the engine.
